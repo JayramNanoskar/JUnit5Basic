@@ -1,5 +1,6 @@
 package com.jayram.util;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -70,5 +71,15 @@ class MathUtilsTest {
 	@DisplayName("TDD method. Should not run")
 	void testDisabled() {
 		fail("This test should be disabled");
+	}
+	
+	@Test
+	@DisplayName("multiply method")
+	void testMultiply() {
+		assertAll(
+				() -> assertEquals(4, mathUtils.multiply(2, 2)),
+				() -> assertEquals(0, mathUtils.multiply(2, 0)),
+				() -> assertEquals(-4, mathUtils.multiply(-2, 2))
+				);
 	}
 }
