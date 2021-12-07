@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -54,7 +56,8 @@ class MathUtilsTest {
 	}
 	
 
-	@Test
+	@RepeatedTest(2)
+	@Tag("Circle")
 	void testComputeCircleRadius() {
 		assertEquals(314.1592653589793, mathUtils.computeCircleArea(10), "Should return right circle area"); //In case of failure we can see message
 	}
