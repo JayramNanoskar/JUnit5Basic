@@ -49,7 +49,7 @@ class MathUtilsTest {
 		@Test
 		@DisplayName("when adding two negative numbers")
 		void testAddNegative() {
-			assertEquals(-4, mathUtils.add(-2, -2), "should return the right sum");
+			assertEquals(-4, mathUtils.add(-2, -2), () -> "should return the right sum");
 		}
 	}
 	
