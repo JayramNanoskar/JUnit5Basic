@@ -15,13 +15,17 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestReporter;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("When running MathUtils")
 class MathUtilsTest {
 
 	private MathUtils mathUtils;
+	private TestInfo testInfo;
+	private TestReporter testReporter;
 	
 	@BeforeAll
 	void beforeAllInit() { //We can remove static keyword because we are changing default TestInstance behavior
@@ -29,8 +33,11 @@ class MathUtilsTest {
 	}
 	
 	@BeforeEach
-	void init() {
+	void init(TestInfo testInfo, TestReporter testReporter) { //Using Dependency Injection
+		this.testInfo = testInfo;
+		this.testReporter = testReporter;
 		mathUtils = new MathUtils();
+		testReporter.publishEntry("Running "+ this.testInfo.getDisplayName()+ " with tags "+ this.testInfo.getTags());;
 	}
 	
 	@AfterEach
