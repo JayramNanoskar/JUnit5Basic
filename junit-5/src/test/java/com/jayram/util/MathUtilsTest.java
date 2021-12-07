@@ -10,10 +10,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@DisplayName("When running MathUtils")
 class MathUtilsTest {
 
 	private MathUtils mathUtils;
@@ -33,12 +35,23 @@ class MathUtilsTest {
 		System.out.println("Cleaning up.....");
 	}
 	
-	@Test
-	void testAdd() {
-		int expected = 4;
-		int actual = mathUtils.add(2, 2);
-		assertEquals(expected, actual);
+	@Nested
+	@DisplayName("add method")
+	class AddTest {
+		
+		@Test
+		@DisplayName("when adding two positive numbers")
+		void testAddPositive() {
+			assertEquals(4, mathUtils.add(2, 2), "should return the right sum");
+		}
+		
+		@Test
+		@DisplayName("when adding two negative numbers")
+		void testAddNegative() {
+			assertEquals(-4, mathUtils.add(-2, -2), "should return the right sum");
+		}
 	}
+	
 
 	@Test
 	void testComputeCircleRadius() {
